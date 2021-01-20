@@ -1,0 +1,52 @@
+{
+  "_from": "homebridge-http-co2-sensor@latest",
+  "_id": "homebridge-http-co2-sensor@1.0.6",
+  "_inBundle": false,
+  
+  "_location": "/homebridge-http-co2-sensor",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "homebridge-http-co2-sensor@latest",
+    "name": "homebridge-http-co2-sensor",
+    "escapedName": "homebridge-http-co2-sensor",
+    "rawSpec": "latest",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  
+  "_spec": "homebridge-http-co2-sensor@latest",
+  "_where": "/usr/local",
+ 
+  "bundleDependencies": false,
+  "dependencies": {
+    "homebridge-http-base": "2.1.6"
+  },
+  "deprecated": false,
+  "description": "Http co2 sensor for Homebridge",
+  "devDependencies": {
+    "hap-nodejs": "^0.5.7"
+  },
+  "engines": {
+    "homebridge": ">=0.4.8",
+    "node": ">=10.17.0"
+  },
+
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "license": "ISC",
+  "name": "homebridge-co2-sensor",
+  "repository": {
+    "type": "git"
+   
+  },
+  "scripts": {
+    "test": "echo no test specified"
+  },
+  "version": "1.0.6"
+}
