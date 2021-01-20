@@ -1,6 +1,6 @@
 "use strict";
 
-let Service, Characteristic, api;
+let Service, Characteristic, api; 
 
 const _http_base = require("homebridge-http-base");
 const http = _http_base.http;
@@ -19,7 +19,7 @@ module.exports = function (homebridge) {
 
     api = homebridge;
 
-    homebridge.registerAccessory("homebridge-http-co2-sensor", "HTTP_CO2", HTTP_CO2);
+    homebridge.registerAccessory("homebridge-http-co2-sensor", "HTTP-CO2", HTTP-CO2);
 };
 
 function HTTP_CO2(log, config) {
