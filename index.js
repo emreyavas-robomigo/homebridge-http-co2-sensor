@@ -19,7 +19,7 @@ module.exports = function (homebridge) {
 
     api = homebridge;
 
-    homebridge.registerAccessory("homebridge-http-CO2-sensor", "HTTP_CO2", HTTP_CO2);
+    homebridge.registerAccessory("homebridge-http-co2-sensor", "HTTP_CO2", HTTP_CO2);
 };
 
 function HTTP_CO2(log, config) {
