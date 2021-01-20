@@ -13,15 +13,15 @@ Then run the following command to install `homebridge-http-co2-sensor`
 sudo npm install -g emreyavas-robomigo/homebridge-http-co2-sensor
 ```
 
-## Updating the humidity in HomeKit
+## Updating the Co2 Level in HomeKit
 
 The _'CarbonDioxideLevel'_ characteristic has the permission to `notify` the HomeKit controller of state 
-changes. `homebridge-HTTP-CO2-sensor` supports two concepts to send humidity changes to HomeKit.
+changes. `homebridge-HTTP-CO2-sensor` supports two concepts to send Co2 Level changes to HomeKit.
 
 ### The 'pull' way:
 
 The 'pull' way is probably the easiest to set up and supported in every scenario. `homebridge-http-co2-sensor` 
-requests the humidity of the sensor in an specified interval (pulling) and sends the value to HomeKit.  
+requests the Co2 Level of the sensor in an specified interval (pulling) and sends the value to HomeKit.  
 Look for `pullInterval` in the list of configuration options if you want to configure it.
 
 ### The 'push' way:
@@ -57,19 +57,18 @@ The configuration can contain the following properties:
 * `accessory` \<string\> **required**: Defines the plugin used and must be set to **"HTTP-CO2"** for this plugin.
 * `name` \<string\> **required**: Defines the name which is later displayed in HomeKit
 * `getUrl` \<string |  [urlObject](#urlobject)\> **required**: Defines the url (and other properties when using 
-    and urlObject) to query the current humidity from the sensor. By default it expects the http server 
-    to return the humidity in percent.
+    and urlObject) to query the current Co2 Level from the sensor. 
 
 ##### Advanced configuration options:
 
 * `statusPattern` \<string\> **optional** \(Default: **"/([0-9]{1,3})/"**): Defines a regex pattern with which the 
-    humidity is extracted from the body of the http response from the `getUrl`. The group which should
+    Co2 Level is extracted from the body of the http response from the `getUrl`. The group which should
     be extracted can be configured with the `patternGroupToExtract` property.  
     [More about regex pattern](https://www.w3schools.com/jsref/jsref_obj_regexp.asp).
-* `patternGroupToExtract` <\number\> **optional** \(Default: **1**\): Defines the regex group of which the humidity 
+* `patternGroupToExtract` <\number\> **optional** \(Default: **1**\): Defines the regex group of which the Co2 Level 
     is extracted.
 * `statusCache` \<number\> **optional** \(Default: **0**\): Defines the amount of time in milliseconds a queried value 
-   of the _CurrentRelativeHumidity_ characteristic is cached before a new request is made to the http device.  
+   of the CarbonDioxideLevel characteristic is cached before a new request is made to the http device.  
    Default is **0** which indicates no caching. A value of **-1** will indicate infinite caching.
 
 - `pullInterval` \<integer\> **optional**: The property expects an interval in **milliseconds** in which the plugin 
@@ -194,7 +193,7 @@ A mqttObject can have the following properties:
 * `connectTimeout` \<number\> **optional** \(Default: **30000**\): Time in milliseconds the client waits until the 
         CONNECT needs to be acknowledged (CONNACK).
 
-Below is an example of an mqttObject containing the basic properties for a humidity service:
+Below is an example of an mqttObject containing the basic properties for a Co2 Level service:
 ```json
 {
   "host": "127.0.0.1",
@@ -208,7 +207,7 @@ Below is an example of an mqttObject containing the basic properties for a humid
   "subscriptions": [
     {
       "topic": "your/topic/here",
-      "characteristic": "CurrentRelativeHumidity",
+      "characteristic": "CarbonDioxideLevel",
       "messagePattern": "([0-9]{1,3})"
     }
   ]
@@ -231,12 +230,12 @@ Down here is an example on how to configure `homebridge-HTTP-CO2-sensor` to work
     "accessories": [
         {
           "accessory": "HTTP-CO2",
-          "name": "Humidity Sensor",
+          "name": "CO2 Sensor",
           
-          "notificationID": "my-humidity-sensor",
+          "notificationID": "my-CO2-sensor",
           "notificationPassword": "superSecretPassword",
           
-          "getUrl": "http://localhost/api/getHumidity"
+          "getUrl": "http://localhost/api/getCo2"
         }   
     ]
 }
