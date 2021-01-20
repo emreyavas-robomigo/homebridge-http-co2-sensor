@@ -22,7 +22,7 @@ module.exports = function (homebridge) {
     homebridge.registerAccessory("homebridge-http-co2-sensor", "HTTP-CO2", HTTP-CO2);
 };
 
-function HTTP_CO2(log, config) {
+function HTTP-CO2(log, config) {
     this.log = log;
     this.name = config.name;
     this.debug = config.debug || false;
