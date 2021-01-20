@@ -60,7 +60,7 @@ function HTTP_CO2(log, config) {
 
     this.homebridgeService = new Service.CarbonDioxideSensor(this.name);
     this.homebridgeService.getCharacteristic(Characteristic.CarbonDioxideLevel)
-        .on("get", this.getHumidity.bind(this));
+        .on("get", this.getCO2.bind(this));
     
     
     
@@ -68,7 +68,7 @@ function HTTP_CO2(log, config) {
 
     /** @namespace config.pullInterval */
     if (config.pullInterval) {
-        this.pullTimer = new PullTimer(this.log, config.pullInterval, this.getHumidity.bind(this), value => {
+        this.pullTimer = new PullTimer(this.log, config.pullInterval, this.getCO2.bind(this), value => {
            this.homebridgeService.setCharacteristic(Characteristic.CarbonDioxideLevel, value);
            
         });
@@ -134,7 +134,7 @@ HTTP_CO2.prototype = {
         characteristic.updateValue(body.value);
     },
 
-    getHumidity: function (callback) {
+    getCO2: function (callback) {
         if (!this.statusCache.shouldQuery()) {
             const value = this.homebridgeService.getCharacteristic(Characteristic.CarbonDioxideLevel).value;
             if (this.debug)
@@ -157,9 +157,9 @@ HTTP_CO2.prototype = {
                 callback(new Error("Got http error code " + response.statusCode));
             }
             else {
-                let humidity;
+                let co2level;
                 try {
-                    humidity = utils.extractValueFromPattern(this.statusPattern, body, this.patternGroupToExtract);
+                    co2level = utils.extractValueFromPattern(this.statusPattern, body, this.patternGroupToExtract);
                 } catch (error) {
                     this.log("Co2 error occurred while extracting co2 from body: " + error.message);
                     callback(new Error("pattern error"));
@@ -167,10 +167,10 @@ HTTP_CO2.prototype = {
                 }
 
                 if (this.debug)
-                    this.log("Co2 is currently at %s", humidity);
+                    this.log("Co2 is currently at %s", co2level);
 
                 this.statusCache.queried();
-                callback(null, humidity);
+                callback(null, co2level);
             }
         });
     },
